@@ -11,14 +11,8 @@ metadata:
     alb.ingress.kubernetes.io/success-codes: "200"
     alb.ingress.kubernetes.io/unhealthy-threshold-count: "3"
     kubernetes.io/ingress.class: alb
-  creationTimestamp: "2024-02-06T13:44:54Z"
-  finalizers:
-  - ingress.k8s.aws/resources
-  generation: 1
   name: ecom-prodapac-ingress
   namespace: ecom-prodapac-backend
-  resourceVersion: "34143100"
-  uid: f65119b4-faf1-480a-ac24-d22ca71358a7
 spec:
   rules:
   - http:
