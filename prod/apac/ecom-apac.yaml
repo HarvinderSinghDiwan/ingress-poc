@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "30"
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "10"
+    alb.ingress.kubernetes.io/healthy-threshold-count: "2"
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/success-codes: "200"
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: "3"
+    kubernetes.io/ingress.class: alb
+  creationTimestamp: "2024-02-06T13:44:54Z"
+  finalizers:
+  - ingress.k8s.aws/resources
+  generation: 1
+  name: ecom-prodapac-ingress
+  namespace: ecom-prodapac-backend
+  resourceVersion: "34143100"
+  uid: f65119b4-faf1-480a-ac24-d22ca71358a7
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: prod-apac-ecom-glb-prodmedia-svc
+            port:
+              number: 80
+        path: /glb/estore/v1/assets*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: prod-apac-ecom-glb-prodspec-svc
+            port:
+              number: 80
+        path: /glb/estore/v1/product-specs*
+        pathType: ImplementationSpecific
